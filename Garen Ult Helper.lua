@@ -42,13 +42,14 @@ end
 
 
 function Autokill()
- for i, enemy in pairs(GetEnemyHeroes()) do
-  local Rdmg = getDmg('R', enemy, myHero) 
+  local rLvl = myHero:GetSpellData(_R).level
+  local bonus = rLvl == 0 and 0 or rLvl == 1 and 0.2875 or rLvl == 2 and 0.3333 or rLvl == 3 and 0.4
+  for i, enemy in pairs(GetEnemyHeroes()) do
+  local Rdmg = 175*rLvl+(enemy.maxHealth-enemy.health)*bonus
+  local finalDmg = (100/(100+enemy.magicArmor))*Rdmg
   
-  if Rready and ValidTarget(enemy, 400) and enemy.health < Rdmg then
+  if Rready and ValidTarget(enemy, 400) and enemy.health < finalDmg then
    CastSpell(_R, enemy)
  end 
 end
 end
-
-
