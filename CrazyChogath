@@ -88,7 +88,7 @@ end
 function Combo()
 	if ValidTarget(target, 1000) then
 		if Qready and Menu.combosettings.combokey and Menu.combosettings.useq then
-			local CastPosition,  HitChance,  Position = VP:GetCircularAOECastPosition(target, 0.5, 250, 1000, math.huge, myHero, false)
+			local CastPosition,  HitChance,  Position = VP:GetCircularAOECastPosition(target, 1.2, 250, 950, math.huge, myHero, false)
 			if HitChance >= 2 then
 				CastSpell(_Q, CastPosition.x, CastPosition.z)
 			end
@@ -97,7 +97,7 @@ function Combo()
 
 	if ValidTarget(target, 675) then
 		if Wready and Menu.combosettings.usew then
-			local CastPosition,  HitChance,  Position = VP:GetLineCastPosition(target, 0.25, 210, 675, math.huge, myHero, false)
+			local CastPosition,  HitChance,  Position = VP:GetLineCastPosition(target, 0.25, 210, 660, math.huge, myHero, false)
 			if HitChance >= 2 then
 				CastSpell(_W, CastPosition.x, CastPosition.z)
 			end
@@ -122,12 +122,12 @@ function Autokill()
 		local Rdmg = getDmg('R', enemy, myHero)
 
 		if Qready and ValidTarget(enemy, 1000) and enemy.health < Qdmg then
-			local CastPosition,  HitChance,  Position = VP:GetCircularAOECastPosition(enemy, 0.5, 250, 1000, math.huge, myHero, false)
+			local CastPosition,  HitChance,  Position = VP:GetCircularAOECastPosition(enemy, 1.2, 250, 950, math.huge, myHero, false)
 			if HitChance >= 2 then
 				CastSpell(_Q, CastPosition.x, CastPosition.z)
 			end
 		elseif Wready and ValidTarget(enemy, 675) and enemy.health < Wdmg then
-			local CastPosition,  HitChance,  Position = VP:GetLineCastPosition(enemy, 0.25, 210, 675, math.huge, myHero, false)
+			local CastPosition,  HitChance,  Position = VP:GetLineCastPosition(enemy, 0.25, 210, 660, math.huge, myHero, false)
 			if HitChance >= 2 then
 				CastSpell(_W, CastPosition.x, CastPosition.z)
 			end
